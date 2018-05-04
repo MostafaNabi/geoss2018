@@ -1,0 +1,16 @@
+  {
+        "foursquare_id": "ewfjh0f93fj3289rh398",
+        "text": "This is a great place",
+        "accessible": true,
+        "username": "james98"
+    },
+
+    {
+        "place": {
+            "desc": "This is a foursquare place"
+        },
+
+        "comments": [{
+            "desc": "An array of the comment objectsfc above"
+        }]
+    }

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Cornerstone Didcot",
+        "latitude": "29428975238472198",
+        "longitude": "4985342579487543",
+        "address": {
+            "number": 10,
+            "street": "Stone Street",
+            "postcode": "OX11 9JK",
+            "city": "Didcot"
+        },
+        "mobility": [{
+            "id": 1,
+            "username": "chris242",
+            "vote": 1,
+            "text": "Great place, has lifts and ramps."
+        }],
+        "blind": [{
+            "id": 1,
+            "username": "chris242",
+            "vote": -1,
+            "text": "No assistance for those who cannot read."
+        }],
+        "deaf": [{
+            "id": 1,
+            "username": "chris242",
+            "vote": 1,
+            "text": "Great place, has a assistant trained in sign language."
+        }]
+    }
+]

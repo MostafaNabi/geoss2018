@@ -1,0 +1,43 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.form-control-rounded {
+    border-radius: 1rem;
+}
+
+.flex-grow-1 {
+    flex-grow: 1
+}
+
+.flex-grow-2 {
+    flex-grow: 2
+}
+
+.flex-grow-3 {
+    flex-grow: 3
+}
+
+.flex-grow-4 {
+    flex-grow: 4
+}
+
+.flex-grow-5 {
+    flex-grow: 5
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+/* Add pointer to bootstrap class */
+.td-hover {
+    text-decoration: underline;
+    color: blue;
+    @include hover {
+        background-color: $table-hover-bg;
+        cursor: pointer;
+    }
+}

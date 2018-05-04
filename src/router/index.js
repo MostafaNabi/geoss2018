@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Dashboard from '@/components/Dashboard'
 import LocalPointsOfInterest from '@/components/LocalPointsOfInterest'
+import LocationDetails from '@/components/LocationDetails'
 
 Vue.use(Router)
 
@@ -16,7 +17,6 @@ const router = new Router({
 
         {
             path: '/dashboard',
-            name: 'Dashboard',
             component: Dashboard,
             children: [
                 {
@@ -24,10 +24,10 @@ const router = new Router({
                     component: LocalPointsOfInterest
                 },
                 {
-                    path:'/location/:id',
+                    path:'/location/:locationid',
                     name: 'LocationDetails',
                     component: LocationDetails,
-                    props: (route) => ({locationid: parseInt(route.params.locationid)})
+                    props: (route) => ({locationid: route.params.locationid})
                 }
             ]
         }

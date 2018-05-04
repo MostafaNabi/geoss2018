@@ -7,7 +7,6 @@ const state = {
 
 const getters = {
     getLocationById: (state) => (id) => {
-        if(typeof id !== 'number') { console.error('Vuex.getLocationById: ID should be a Number');}
         return state.location_list.find( (item) => item.id === id);
     }
 }

@@ -5,9 +5,7 @@
                 <tr>
                     <th scope='col'> Name </th>
                     <th scope='col'> Address </th>
-                    <th scope='col'> Deaf Accessibility </th>
-                    <th scope='col'> Blind Accessibility </th>
-                    <th scope='col'> Mobility Accessibility </th>
+                    <th scope='col'> Accessibility Votes </th>
                 </tr>
             </thead>
             <tbody>
@@ -19,11 +17,7 @@
                         {{ row.address.city }} <br />
                         {{ row.address.postcode }} <br />
                     </td>
-
-                    <td> {{ row.deaf | calculateVotes }} </td>
-                    <td> {{ row.blind | calculateVotes }} </td>
-                    <td> {{ row.mobility | calculateVotes }} </td>
-
+                    <td> {{ row.comments | calculateVotes }} </td>
                 </tr>
             </tbody>
         </table>
@@ -50,6 +44,10 @@ export default {
     },
 
     created () {
+        navigator.geolocation.getCurrentPosition(pos => {
+            console.log('Current Position', pos);
+        }, err => console.erro(err));
+
         this.$store.dispatch('locations/viewMany').then(locations => {
             console.log('locations returned', locations);
         }, err => {
@@ -59,14 +57,78 @@ export default {
 
     computed: {
         locations () {
-            return this.$store.state.locations.location_list;
+            //  return this.$store.state.locations.location_list;
+            const testdata = [
+                {
+                    id: 'hash1',
+                    name: 'Didcot Theatre',
+                    address: {
+                        number: 1,
+                        street: 'Downs Avenue',
+                        city: 'Didcot',
+                        postcode: 'OX11 7KJ'
+                    },
+                    comments: [
+                        {
+                            fs_id: 'hash1',
+                            id: 1,
+                            text: 'What a great place, very accessible',
+                            accessible: true,
+                            username: 'chris934'
+                        },
+                        {
+                            fs_id: 'hash1',
+                            id: 2,
+                            text: 'Lovelly staff, my son really enjoyed his time here.',
+                            accessible: true,
+                            username: 'mn829'
+                        }
+                    ]
+                },
+                {
+                    id: 'hash2',
+                    name: 'Harwell Coffee',
+                    address: {
+                        number: '10',
+                        street: 'Fermi Avenue',
+                        city: 'Harwell',
+                        postcode: 'OX11 7kK'
+                    },
+                    comments: [
+                        {
+                            fs_id: 'hash2',
+                            id: 3,
+                            text: 'The disabled toilets was not spacious enough.',
+                            accessible: false,
+                            username: 'mt299'
+                        },
+                        {
+                            fs_id: 'hash2',
+                            id: 4,
+                            text: 'Very friendly staff',
+                            accessible: true,
+                            username: 'mt129'
+                        },
+                        {
+                            fs_id: 'hash2',
+                            id: 5,
+                            text: 'Found it difficult to navigate inside the shop',
+                            accessible: false,
+                            username: 'kn820'
+                        }
+                    ]
+
+                }
+            ]
+            this.$store.commit('locations/addLocations', testdata);
+            return testdata;
         }
     },
 
     filters: {
         calculateVotes: function(arr) {
             var total_votes = 0;
-            arr.forEach( el => total_votes += el.vote);
+            arr.forEach( el => total_votes += (el.accessible ? 1 : -1));
             return total_votes;
         }
     }
